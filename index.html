@@ -4,88 +4,46 @@
 <meta charset="UTF-8">
 <title>What Makes a Good Test?</title>
 
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js"></script>
+
 <style>
 body {
-    font-family: 'Segoe UI', sans-serif;
+    font-family: 'Segoe UI';
     background: linear-gradient(to right, #4facfe, #00f2fe);
-    margin: 0;
 }
 
 .container {
-    max-width: 850px;
+    max-width: 900px;
     margin: 30px auto;
     background: white;
     padding: 30px;
     border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
 
-h1 {
-    text-align: center;
-    font-size: 38px;
-    margin-bottom: 10px;
-}
-
-.subtitle {
-    text-align: center;
-    color: #666;
-    margin-bottom: 20px;
-}
-
-input[type="text"] {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 20px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-}
+h1 { text-align:center; font-size:38px; }
 
 .question {
-    background: #f7f9fc;
-    padding: 15px;
-    margin-bottom: 15px;
-    border-left: 5px solid #4facfe;
-    border-radius: 8px;
+    background:#f7f9fc;
+    padding:15px;
+    margin-bottom:15px;
+    border-left:5px solid #4facfe;
 }
 
 button {
-    width: 100%;
-    padding: 15px;
-    font-size: 18px;
-    background: #4facfe;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
-button:hover { background: #007bff; }
-
-.result {
-    text-align: center;
-    margin-top: 20px;
-    font-size: 20px;
+    width:100%;
+    padding:15px;
+    background:#4facfe;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
 }
 
 .scoreboard {
-    margin-top: 30px;
-    background: #eef6ff;
-    padding: 15px;
-    border-radius: 10px;
-}
-
-.scoreboard h2 {
-    text-align: center;
-}
-
-.scoreboard ul {
-    list-style: none;
-    padding: 0;
-}
-
-.scoreboard li {
-    padding: 6px;
-    border-bottom: 1px solid #ccc;
+    margin-top:30px;
+    background:#eef6ff;
+    padding:15px;
 }
 </style>
 </head>
@@ -95,128 +53,152 @@ button:hover { background: #007bff; }
 <div class="container">
 
 <h1>What Makes a Good Test?</h1>
-<p class="subtitle">Assessment on Testing Principles & Classroom Application</p>
 
-<input type="text" id="studentName" placeholder="Enter your full name">
+<input type="text" id="name" placeholder="Enter full name" style="width:100%; padding:10px; margin-bottom:20px;">
 
-<form id="quizForm">
+<form id="quiz">
 
-<!-- MCQ -->
+<!-- QUESTIONS (ALL 4 choices) -->
 <div class="question">
 <p>1. Validity refers to:</p>
 <label><input type="radio" name="q1" value="0"> Consistency</label><br>
-<label><input type="radio" name="q1" value="1"> Measuring what it should measure</label>
+<label><input type="radio" name="q1" value="1"> Measuring what it should measure</label><br>
+<label><input type="radio" name="q1" value="0"> Cost</label><br>
+<label><input type="radio" name="q1" value="0"> Difficulty</label>
 </div>
 
 <div class="question">
-<p>2. Reliable test means:</p>
+<p>2. Reliability means:</p>
 <label><input type="radio" name="q2" value="1"> Consistent results</label><br>
-<label><input type="radio" name="q2" value="0"> Easy marking</label>
+<label><input type="radio" name="q2" value="0"> Real-life tasks</label><br>
+<label><input type="radio" name="q2" value="0"> Easy test</label><br>
+<label><input type="radio" name="q2" value="0"> Long test</label>
 </div>
 
 <div class="question">
-<p>3. Most practical for large classes:</p>
-<label><input type="radio" name="q3" value="1"> Multiple-choice</label><br>
-<label><input type="radio" name="q3" value="0"> Oral exam</label>
+<p>3. Practical test for large classes:</p>
+<label><input type="radio" name="q3" value="1"> MCQ</label><br>
+<label><input type="radio" name="q3" value="0"> Oral exam</label><br>
+<label><input type="radio" name="q3" value="0"> Interview</label><br>
+<label><input type="radio" name="q3" value="0"> Presentation</label>
 </div>
 
 <div class="question">
 <p>4. Objectivity means:</p>
 <label><input type="radio" name="q4" value="1"> No bias</label><br>
-<label><input type="radio" name="q4" value="0"> Real-life tasks</label>
+<label><input type="radio" name="q4" value="0"> Real-life</label><br>
+<label><input type="radio" name="q4" value="0"> Easy</label><br>
+<label><input type="radio" name="q4" value="0"> Long</label>
 </div>
 
-<!-- True False -->
 <div class="question">
 <p>5. A test can be reliable but not valid:</p>
 <label><input type="radio" name="q5" value="1"> True</label><br>
-<label><input type="radio" name="q5" value="0"> False</label>
+<label><input type="radio" name="q5" value="0"> False</label><br>
+<label><input type="radio" name="q5" value="0"> Maybe</label><br>
+<label><input type="radio" name="q5" value="0"> Always false</label>
 </div>
 
 <div class="question">
-<p>6. Authentic tests reflect real-life:</p>
-<label><input type="radio" name="q6" value="1"> True</label><br>
-<label><input type="radio" name="q6" value="0"> False</label>
+<p>6. Authentic tests:</p>
+<label><input type="radio" name="q6" value="1"> Reflect real life</label><br>
+<label><input type="radio" name="q6" value="0"> Are short</label><br>
+<label><input type="radio" name="q6" value="0"> Are easy</label><br>
+<label><input type="radio" name="q6" value="0"> Are long</label>
 </div>
 
 <div class="question">
-<p>7. Practicality is not important:</p>
-<label><input type="radio" name="q7" value="0"> True</label><br>
-<label><input type="radio" name="q7" value="1"> False</label>
+<p>7. Practicality refers to:</p>
+<label><input type="radio" name="q7" value="1"> Ease of use</label><br>
+<label><input type="radio" name="q7" value="0"> Validity</label><br>
+<label><input type="radio" name="q7" value="0"> Difficulty</label><br>
+<label><input type="radio" name="q7" value="0"> Bias</label>
 </div>
 
 <div class="question">
-<p>8. Tests influence teaching:</p>
-<label><input type="radio" name="q8" value="1"> True</label><br>
-<label><input type="radio" name="q8" value="0"> False</label>
-</div>
-
-<!-- Open -->
-<div class="question">
-<p>9. Explain the relationship between validity and washback:</p>
-<textarea name="q9" style="width:100%; height:70px;"></textarea>
+<p>8. Washback refers to:</p>
+<label><input type="radio" name="q8" value="1"> Effect on learning</label><br>
+<label><input type="radio" name="q8" value="0"> Score</label><br>
+<label><input type="radio" name="q8" value="0"> Length</label><br>
+<label><input type="radio" name="q8" value="0"> Cost</label>
 </div>
 
 <div class="question">
-<p>10. Why balance validity, reliability, and practicality? Give an example:</p>
-<textarea name="q10" style="width:100%; height:70px;"></textarea>
+<p>9. Validity and washback:</p>
+<label><input type="radio" name="q9" value="1"> Influence each other</label><br>
+<label><input type="radio" name="q9" value="0"> Not related</label><br>
+<label><input type="radio" name="q9" value="0"> Same thing</label><br>
+<label><input type="radio" name="q9" value="0"> Opposite</label>
 </div>
 
-<button type="button" onclick="submitTest()">Submit Test</button>
+<div class="question">
+<p>10. Balance is important because:</p>
+<label><input type="radio" name="q10" value="1"> Ensures fairness</label><br>
+<label><input type="radio" name="q10" value="0"> Makes test long</label><br>
+<label><input type="radio" name="q10" value="0"> Makes test hard</label><br>
+<label><input type="radio" name="q10" value="0"> No reason</label>
+</div>
+
+<button type="button" onclick="submitQuiz()">Submit</button>
 
 </form>
 
-<div class="result" id="result"></div>
+<div id="result"></div>
 
 <div class="scoreboard">
-<h2>📊 Scoreboard</h2>
-<ul id="scoreList"></ul>
+<h2>📊 Leaderboard</h2>
+<ul id="scores"></ul>
 </div>
 
 </div>
 
 <script>
-function submitTest() {
-    let name = document.getElementById("studentName").value.trim();
-    if (name === "") {
-        alert("Please enter your full name!");
-        return;
-    }
+// 🔴 PASTE YOUR FIREBASE CONFIG HERE
+const firebaseConfig = {
+  apiKey: "AIzaSyAb_UEdg_bkjEq2nJ8xZMvYl5MiYVbudSg",
+  authDomain: "knowledgechecking.firebaseapp.com",
+  projectId: "knowledgechecking",
+  storageBucket: "knowledgechecking.firebasestorage.app",
+  messagingSenderId: "1094349236482",
+  appId: "1:1094349236482:web:e9fed2f1220859ce23fa1b",
+  measurementId: "G-G9G64VQ49Y"
+};
 
+const app = firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+function submitQuiz() {
+    let name = document.getElementById("name").value;
     let score = 0;
-    let total = 8;
 
-    for (let i = 1; i <= total; i++) {
-        let q = document.querySelector('input[name="q'+i+'"]:checked');
-        if (q) score += parseInt(q.value);
+    for(let i=1;i<=10;i++){
+        let q=document.querySelector('input[name="q'+i+'"]:checked');
+        if(q) score+=parseInt(q.value);
     }
 
-    document.getElementById("result").innerHTML =
-        "Your score: " + score + " / " + total +
-        "<br><small>Q9 & Q10 will be graded by your teacher</small>";
+    document.getElementById("result").innerHTML = "Score: "+score+"/10";
 
-    let results = JSON.parse(localStorage.getItem("scores")) || [];
-    results.push({name: name, score: score});
-    localStorage.setItem("scores", JSON.stringify(results));
+    db.collection("scores").add({
+        name:name,
+        score:score
+    });
 
-    displayScores();
+    loadScores();
 }
 
-function displayScores() {
-    let results = JSON.parse(localStorage.getItem("scores")) || [];
-    let list = document.getElementById("scoreList");
-    list.innerHTML = "";
-
-    results.sort((a,b) => b.score - a.score);
-
-    results.forEach((r, index) => {
-        let li = document.createElement("li");
-        li.textContent = (index+1) + ". " + r.name + " — " + r.score;
-        list.appendChild(li);
+function loadScores(){
+    db.collection("scores").orderBy("score","desc").onSnapshot(snapshot=>{
+        let list=document.getElementById("scores");
+        list.innerHTML="";
+        snapshot.forEach(doc=>{
+            let li=document.createElement("li");
+            li.textContent=doc.data().name+" — "+doc.data().score;
+            list.appendChild(li);
+        });
     });
 }
 
-displayScores();
+loadScores();
 </script>
 
 </body>
