@@ -2,82 +2,154 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Requirements of Good Tests</title>
+<title>What Makes a Good Test?</title>
+
 <style>
-body { font-family: Arial, sans-serif; margin: 40px; }
-h1, h2 { color: #2c3e50; }
-.question { margin-bottom: 20px; }
-.result { font-weight: bold; margin-top: 20px; }
-button { padding: 10px 20px; font-size: 16px; }
-textarea { width: 100%; height: 80px; }
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to right, #4facfe, #00f2fe);
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+h1 {
+    text-align: center;
+    color: #2c3e50;
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+.question {
+    background: #f7f9fc;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border-left: 5px solid #4facfe;
+}
+
+.question p {
+    font-weight: bold;
+}
+
+input[type="radio"] {
+    margin-right: 8px;
+}
+
+textarea {
+    width: 100%;
+    height: 80px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    padding: 8px;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    font-size: 18px;
+    background: #4facfe;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #007bff;
+}
+
+.result {
+    text-align: center;
+    font-size: 20px;
+    margin-top: 20px;
+    font-weight: bold;
+    color: #2c3e50;
+}
 </style>
 </head>
 
 <body>
 
-<h1>Test: Requirements of Good Tests</h1>
+<div class="container">
+
+<h1>What Makes a Good Test?</h1>
+<p class="subtitle">Assessment on Testing Principles & Classroom Application</p>
 
 <form id="quizForm">
 
-<!-- MCQs -->
 <div class="question">
 <p>1. Validity refers to:</p>
-<input type="radio" name="q1" value="0"> Consistency of results<br>
-<input type="radio" name="q1" value="1"> Measuring what the test is supposed to measure<br>
-<input type="radio" name="q1" value="0"> Ease of correction<br>
-<input type="radio" name="q1" value="0"> Students’ motivation<br>
+<label><input type="radio" name="q1" value="0"> Consistency of results</label><br>
+<label><input type="radio" name="q1" value="1"> Measuring what the test is supposed to measure</label><br>
+<label><input type="radio" name="q1" value="0"> Ease of correction</label><br>
+<label><input type="radio" name="q1" value="0"> Students’ motivation</label>
 </div>
 
 <div class="question">
 <p>2. A test that produces similar results is:</p>
-<input type="radio" name="q2" value="0"> Valid<br>
-<input type="radio" name="q2" value="0"> Practical<br>
-<input type="radio" name="q2" value="1"> Reliable<br>
-<input type="radio" name="q2" value="0"> Authentic<br>
+<label><input type="radio" name="q2" value="0"> Valid</label><br>
+<label><input type="radio" name="q2" value="0"> Practical</label><br>
+<label><input type="radio" name="q2" value="1"> Reliable</label><br>
+<label><input type="radio" name="q2" value="0"> Authentic</label>
 </div>
 
 <div class="question">
 <p>3. Most practical for large classes:</p>
-<input type="radio" name="q3" value="0"> Oral interview<br>
-<input type="radio" name="q3" value="0"> Role-play<br>
-<input type="radio" name="q3" value="1"> Multiple-choice test<br>
-<input type="radio" name="q3" value="0"> Presentation<br>
+<label><input type="radio" name="q3" value="0"> Oral interview</label><br>
+<label><input type="radio" name="q3" value="0"> Role-play</label><br>
+<label><input type="radio" name="q3" value="1"> Multiple-choice test</label><br>
+<label><input type="radio" name="q3" value="0"> Presentation</label>
 </div>
 
 <div class="question">
 <p>4. Objectivity means:</p>
-<input type="radio" name="q4" value="0"> Real-life tasks<br>
-<input type="radio" name="q4" value="1"> No bias in scoring<br>
-<input type="radio" name="q4" value="0"> Long test duration<br>
-<input type="radio" name="q4" value="0"> Difficult questions<br>
+<label><input type="radio" name="q4" value="0"> Real-life tasks</label><br>
+<label><input type="radio" name="q4" value="1"> No bias in scoring</label><br>
+<label><input type="radio" name="q4" value="0"> Long test duration</label><br>
+<label><input type="radio" name="q4" value="0"> Difficult questions</label>
 </div>
 
-<!-- True/False -->
 <div class="question">
 <p>5. A test can be reliable but not valid:</p>
-<input type="radio" name="q5" value="1"> True<br>
-<input type="radio" name="q5" value="0"> False<br>
+<label><input type="radio" name="q5" value="1"> True</label><br>
+<label><input type="radio" name="q5" value="0"> False</label>
 </div>
 
 <div class="question">
 <p>6. Authentic tests reflect real-life situations:</p>
-<input type="radio" name="q6" value="1"> True<br>
-<input type="radio" name="q6" value="0"> False<br>
+<label><input type="radio" name="q6" value="1"> True</label><br>
+<label><input type="radio" name="q6" value="0"> False</label>
 </div>
 
 <div class="question">
 <p>7. Practicality is not important:</p>
-<input type="radio" name="q7" value="0"> True<br>
-<input type="radio" name="q7" value="1"> False<br>
+<label><input type="radio" name="q7" value="0"> True</label><br>
+<label><input type="radio" name="q7" value="1"> False</label>
 </div>
 
 <div class="question">
 <p>8. Tests influence teaching and learning:</p>
-<input type="radio" name="q8" value="1"> True<br>
-<input type="radio" name="q8" value="0"> False<br>
+<label><input type="radio" name="q8" value="1"> True</label><br>
+<label><input type="radio" name="q8" value="0"> False</label>
 </div>
 
-<!-- Open Questions -->
 <div class="question">
 <p>9. Explain the relationship between validity and washback:</p>
 <textarea name="q9"></textarea>
@@ -88,25 +160,33 @@ textarea { width: 100%; height: 80px; }
 <textarea name="q10"></textarea>
 </div>
 
-<button type="button" onclick="calculateScore()">Submit</button>
+<button type="button" onclick="calculateScore()">Submit Test</button>
 
 </form>
 
 <div class="result" id="result"></div>
 
+</div>
+
 <script>
 function calculateScore() {
     let score = 0;
-    let total = 8; // auto-graded questions
+    let total = 8;
 
     for (let i = 1; i <= 8; i++) {
         let q = document.querySelector('input[name="q'+i+'"]:checked');
         if (q) score += parseInt(q.value);
     }
 
+    let feedback = "";
+
+    if (score >= 7) feedback = "🌟 Excellent!";
+    else if (score >= 5) feedback = "👍 Good job!";
+    else feedback = "📘 Keep improving!";
+
     document.getElementById("result").innerHTML =
-        "Your score (auto-graded): " + score + " / " + total +
-        "<br>Questions 9 and 10 require teacher evaluation.";
+        "Your score: " + score + " / " + total + "<br>" + feedback +
+        "<br><small>Questions 9 & 10 will be graded by your teacher.</small>";
 }
 </script>
 
