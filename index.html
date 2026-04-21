@@ -151,7 +151,14 @@ button {
 </div>
 
 <script>
-// 🔴 PASTE YOUR FIREBASE CONFIG HERE
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyAb_UEdg_bkjEq2nJ8xZMvYl5MiYVbudSg",
   authDomain: "knowledgechecking.firebaseapp.com",
@@ -162,41 +169,9 @@ const firebaseConfig = {
   measurementId: "G-G9G64VQ49Y"
 };
 
-const app = firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
-
-function submitQuiz() {
-    let name = document.getElementById("name").value;
-    let score = 0;
-
-    for(let i=1;i<=10;i++){
-        let q=document.querySelector('input[name="q'+i+'"]:checked');
-        if(q) score+=parseInt(q.value);
-    }
-
-    document.getElementById("result").innerHTML = "Score: "+score+"/10";
-
-    db.collection("scores").add({
-        name:name,
-        score:score
-    });
-
-    loadScores();
-}
-
-function loadScores(){
-    db.collection("scores").orderBy("score","desc").onSnapshot(snapshot=>{
-        let list=document.getElementById("scores");
-        list.innerHTML="";
-        snapshot.forEach(doc=>{
-            let li=document.createElement("li");
-            li.textContent=doc.data().name+" — "+doc.data().score;
-            list.appendChild(li);
-        });
-    });
-}
-
-loadScores();
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
 </script>
 
 </body>
