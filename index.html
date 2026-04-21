@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Requirements of Good Tests</title>
+<style>
+body { font-family: Arial, sans-serif; margin: 40px; }
+h1, h2 { color: #2c3e50; }
+.question { margin-bottom: 20px; }
+.result { font-weight: bold; margin-top: 20px; }
+button { padding: 10px 20px; font-size: 16px; }
+textarea { width: 100%; height: 80px; }
+</style>
+</head>
+
+<body>
+
+<h1>Test: Requirements of Good Tests</h1>
+
+<form id="quizForm">
+
+<!-- MCQs -->
+<div class="question">
+<p>1. Validity refers to:</p>
+<input type="radio" name="q1" value="0"> Consistency of results<br>
+<input type="radio" name="q1" value="1"> Measuring what the test is supposed to measure<br>
+<input type="radio" name="q1" value="0"> Ease of correction<br>
+<input type="radio" name="q1" value="0"> Students’ motivation<br>
+</div>
+
+<div class="question">
+<p>2. A test that produces similar results is:</p>
+<input type="radio" name="q2" value="0"> Valid<br>
+<input type="radio" name="q2" value="0"> Practical<br>
+<input type="radio" name="q2" value="1"> Reliable<br>
+<input type="radio" name="q2" value="0"> Authentic<br>
+</div>
+
+<div class="question">
+<p>3. Most practical for large classes:</p>
+<input type="radio" name="q3" value="0"> Oral interview<br>
+<input type="radio" name="q3" value="0"> Role-play<br>
+<input type="radio" name="q3" value="1"> Multiple-choice test<br>
+<input type="radio" name="q3" value="0"> Presentation<br>
+</div>
+
+<div class="question">
+<p>4. Objectivity means:</p>
+<input type="radio" name="q4" value="0"> Real-life tasks<br>
+<input type="radio" name="q4" value="1"> No bias in scoring<br>
+<input type="radio" name="q4" value="0"> Long test duration<br>
+<input type="radio" name="q4" value="0"> Difficult questions<br>
+</div>
+
+<!-- True/False -->
+<div class="question">
+<p>5. A test can be reliable but not valid:</p>
+<input type="radio" name="q5" value="1"> True<br>
+<input type="radio" name="q5" value="0"> False<br>
+</div>
+
+<div class="question">
+<p>6. Authentic tests reflect real-life situations:</p>
+<input type="radio" name="q6" value="1"> True<br>
+<input type="radio" name="q6" value="0"> False<br>
+</div>
+
+<div class="question">
+<p>7. Practicality is not important:</p>
+<input type="radio" name="q7" value="0"> True<br>
+<input type="radio" name="q7" value="1"> False<br>
+</div>
+
+<div class="question">
+<p>8. Tests influence teaching and learning:</p>
+<input type="radio" name="q8" value="1"> True<br>
+<input type="radio" name="q8" value="0"> False<br>
+</div>
+
+<!-- Open Questions -->
+<div class="question">
+<p>9. Explain the relationship between validity and washback:</p>
+<textarea name="q9"></textarea>
+</div>
+
+<div class="question">
+<p>10. Why balance validity, reliability, and practicality? Give an example:</p>
+<textarea name="q10"></textarea>
+</div>
+
+<button type="button" onclick="calculateScore()">Submit</button>
+
+</form>
+
+<div class="result" id="result"></div>
+
+<script>
+function calculateScore() {
+    let score = 0;
+    let total = 8; // auto-graded questions
+
+    for (let i = 1; i <= 8; i++) {
+        let q = document.querySelector('input[name="q'+i+'"]:checked');
+        if (q) score += parseInt(q.value);
+    }
+
+    document.getElementById("result").innerHTML =
+        "Your score (auto-graded): " + score + " / " + total +
+        "<br>Questions 9 and 10 require teacher evaluation.";
+}
+</script>
+
+</body>
+</html>
