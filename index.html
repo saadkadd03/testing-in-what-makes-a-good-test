@@ -12,7 +12,7 @@ body {
 }
 
 .container {
-    max-width: 800px;
+    max-width: 850px;
     margin: 30px auto;
     background: white;
     padding: 30px;
@@ -20,11 +20,21 @@ body {
     box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
 
-h1 { text-align: center; font-size: 36px; }
+h1 {
+    text-align: center;
+    font-size: 38px;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 20px;
+}
 
 input[type="text"] {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     margin-bottom: 20px;
     border-radius: 6px;
     border: 1px solid #ccc;
@@ -74,7 +84,7 @@ button:hover { background: #007bff; }
 }
 
 .scoreboard li {
-    padding: 5px;
+    padding: 6px;
     border-bottom: 1px solid #ccc;
 }
 </style>
@@ -85,25 +95,27 @@ button:hover { background: #007bff; }
 <div class="container">
 
 <h1>What Makes a Good Test?</h1>
+<p class="subtitle">Assessment on Testing Principles & Classroom Application</p>
 
 <input type="text" id="studentName" placeholder="Enter your full name">
 
 <form id="quizForm">
 
+<!-- MCQ -->
 <div class="question">
 <p>1. Validity refers to:</p>
-<label><input type="radio" name="q1" value="1"> Measuring what the test measures</label><br>
-<label><input type="radio" name="q1" value="0"> Ease of correction</label>
+<label><input type="radio" name="q1" value="0"> Consistency</label><br>
+<label><input type="radio" name="q1" value="1"> Measuring what it should measure</label>
 </div>
 
 <div class="question">
 <p>2. Reliable test means:</p>
 <label><input type="radio" name="q2" value="1"> Consistent results</label><br>
-<label><input type="radio" name="q2" value="0"> Easy to grade</label>
+<label><input type="radio" name="q2" value="0"> Easy marking</label>
 </div>
 
 <div class="question">
-<p>3. Practical test for large classes:</p>
+<p>3. Most practical for large classes:</p>
 <label><input type="radio" name="q3" value="1"> Multiple-choice</label><br>
 <label><input type="radio" name="q3" value="0"> Oral exam</label>
 </div>
@@ -114,13 +126,43 @@ button:hover { background: #007bff; }
 <label><input type="radio" name="q4" value="0"> Real-life tasks</label>
 </div>
 
+<!-- True False -->
 <div class="question">
-<p>5. Tests influence learning:</p>
+<p>5. A test can be reliable but not valid:</p>
 <label><input type="radio" name="q5" value="1"> True</label><br>
 <label><input type="radio" name="q5" value="0"> False</label>
 </div>
 
-<button type="button" onclick="submitTest()">Submit</button>
+<div class="question">
+<p>6. Authentic tests reflect real-life:</p>
+<label><input type="radio" name="q6" value="1"> True</label><br>
+<label><input type="radio" name="q6" value="0"> False</label>
+</div>
+
+<div class="question">
+<p>7. Practicality is not important:</p>
+<label><input type="radio" name="q7" value="0"> True</label><br>
+<label><input type="radio" name="q7" value="1"> False</label>
+</div>
+
+<div class="question">
+<p>8. Tests influence teaching:</p>
+<label><input type="radio" name="q8" value="1"> True</label><br>
+<label><input type="radio" name="q8" value="0"> False</label>
+</div>
+
+<!-- Open -->
+<div class="question">
+<p>9. Explain the relationship between validity and washback:</p>
+<textarea name="q9" style="width:100%; height:70px;"></textarea>
+</div>
+
+<div class="question">
+<p>10. Why balance validity, reliability, and practicality? Give an example:</p>
+<textarea name="q10" style="width:100%; height:70px;"></textarea>
+</div>
+
+<button type="button" onclick="submitTest()">Submit Test</button>
 
 </form>
 
@@ -142,7 +184,7 @@ function submitTest() {
     }
 
     let score = 0;
-    let total = 5;
+    let total = 8;
 
     for (let i = 1; i <= total; i++) {
         let q = document.querySelector('input[name="q'+i+'"]:checked');
@@ -150,9 +192,9 @@ function submitTest() {
     }
 
     document.getElementById("result").innerHTML =
-        "Score: " + score + "/" + total;
+        "Your score: " + score + " / " + total +
+        "<br><small>Q9 & Q10 will be graded by your teacher</small>";
 
-    // Save results
     let results = JSON.parse(localStorage.getItem("scores")) || [];
     results.push({name: name, score: score});
     localStorage.setItem("scores", JSON.stringify(results));
@@ -165,9 +207,11 @@ function displayScores() {
     let list = document.getElementById("scoreList");
     list.innerHTML = "";
 
-    results.forEach(r => {
+    results.sort((a,b) => b.score - a.score);
+
+    results.forEach((r, index) => {
         let li = document.createElement("li");
-        li.textContent = r.name + " — " + r.score;
+        li.textContent = (index+1) + ". " + r.name + " — " + r.score;
         list.appendChild(li);
     });
 }
